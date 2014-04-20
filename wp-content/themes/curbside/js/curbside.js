@@ -31,8 +31,7 @@ function curbsideMap() {
 
 				m.map.addMarker({
 					lat: position.coords.latitude,
-					lng: position.coords.longitude,
-					//icon: curbsideSettings.template_path + '/images/current-location.png',
+					lng: position.coords.longitude
 				});
 
 				m.map.setCenter(position.coords.latitude, position.coords.longitude);
@@ -66,17 +65,6 @@ function curbsideMap() {
 			return;
 		}
 
-		/*m.getMap().drawRoute({
-			origin: m.geoLocated,
-			destination: m.getSetting( 'toPlace' ),
-			travelMode: 'walking',
-			strokeColor: '#131540',
-			strokeOpacity: 0.6,
-			strokeWeight: 6
-		});
-
-		console.log(m.geoLocated, m.getSetting( 'toPlace' ));*/
-
 		var routes = m.getMap().getRoutes({
 			origin: m.geoLocated,
 			destination: m.getSetting( 'toPlace' ),
@@ -99,10 +87,6 @@ function curbsideMap() {
 				$( '.distance-to' ).html( results[0].legs[0].distance.text );
 			}
 		});
-
-		//m.distanceTo = m.getMap().geometry.spherical.computeDistanceBetween( m.geoLocated, m.getSetting( 'toPlace' ) );
-
-		//console.log( m.distanceTo );
 	}
 
 	function canvasHeight() {
