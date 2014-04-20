@@ -13,33 +13,39 @@
 
 get_header(); ?>
 
+	<?php while ( have_posts() ) : the_post(); ?>
+
+	<?php $truck = new Curbside_Truck( $post, $from = 'menu-item' );?>
+
 	<header class="bar bar-nav">
-		<a href="<?php the_permalink(); ?>" class="btn btn-link btn-nav pull-left">
+		<a href="<?php echo $truck->get_menu_url(); ?>" class="btn btn-link btn-nav pull-left" data-transition="slide-out">
 			<span class="icon icon-left-nav"></span>
 			Back
 		</button>
 
 		<a href="#" class="icon icon-bars pull-right"></a>
 
-		<h1 class="title">Menu</h1>
+		<h1 class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
 	</header>
 
 	<div class="content">
 
-		<div class="card">
-			<div id="map"></div>
-
-			<script type="text/javascript">
-				jQuery(document).ready(function($) {
-					var map = curbsideMap();
-
-					map.init({
-						el: '#map',
-						geolocate: true
-					});
-				});
-			</script>
+		<div class="content-padded">
+			<?php the_post_thumbnail(); ?>
 		</div>
+
+		<div class="card">
+			<ul class="table-view">
+				<li class="table-view-cell">
+					<?php the_content(); ?>
+				</li>
+				<li class="table-view-cell">
+					$0.00
+				</li>
+			</ul>
+		</div>
+
+		<?php endwhile; ?>
 
 		<?php locate_template( array( 'bar-tab.php' ), true ); ?>
 

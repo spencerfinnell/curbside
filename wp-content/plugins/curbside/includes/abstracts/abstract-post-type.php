@@ -46,7 +46,7 @@ class Curbside_Post_Type {
 			'show_ui'            => true,
 			'show_in_menu'       => true,
 			'query_var'          => true,
-			'rewrite'            => array( 'slug' => $this->post_type_slug ),
+			'rewrite'            => array( 'slug' => str_replace( '_', '-', $this->post_type_slug ) ),
 			'capability_type'    => 'post',
 			'has_archive'        => true,
 			'hierarchical'       => false,

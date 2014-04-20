@@ -6,13 +6,16 @@ class Curbside_Menu {
 
 	public $post;
 
-	public function __construct( $menu ) {
+	public function __construct( $menu, $from = 'post' ) {
 		if ( is_a( $download, 'WP_Post' ) ) {
 			$this->ID   = $menu->ID;
 			$this->post = $menu;
 		} elseif ( is_a( $menu, 'Curbside_Menu' ) ) {
 			$this->ID   = $menu->ID;
 			$this->post = $menu->post;
+		} elseif ( 'menu-item' == $from ) {
+			$this->ID   = $this->get_menu_from_item( $menu );
+			$this->post = get_post( $this->ID );
 		} else {
 			$this->ID   = $menu;
 			$this->post = get_post( $menu );
@@ -40,6 +43,12 @@ class Curbside_Menu {
 		$connected = new WP_Query( $args );
 
 		return $connected;
+	}
+
+	public function get_menu_from_item( $menu_item ) {
+		$connected = p2p_type( 'menu_item_to_menu' )->get_connected( $menu_item->ID );
+
+		return $connected->post;
 	}
 
 }

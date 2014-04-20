@@ -10,6 +10,10 @@ class Curbside_Location {
 		return $this->location->post_date;
 	}
 
+	public function get_street() {
+		return $this->location->geolocation_street;
+	}
+
 	public function get_formatted_address() {
 		return $this->location->geolocation_formatted_address;
 	}
@@ -18,7 +22,7 @@ class Curbside_Location {
 		return array(
 			'long' => $this->location->geolocation_long,
 			'lat' => $this->location->geolocation_lat
-		)
+		);
 	}
 
 }

@@ -29,6 +29,7 @@ class Curbside_Cuisine {
 		include( 'includes/class-trucks.php' );
 		include( 'includes/class-truck.php' );
 		include( 'includes/class-locations.php' );
+		include( 'includes/class-location.php' );
 		include( 'includes/class-menus.php' );
 		include( 'includes/class-menu.php' );
 		include( 'includes/class-menu-items.php' );

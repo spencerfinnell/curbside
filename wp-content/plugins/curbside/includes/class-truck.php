@@ -6,13 +6,19 @@ class Curbside_Truck {
 
 	public $post;
 
-	public function __construct( $truck ) {
-		if ( is_a( $download, 'WP_Post' ) ) {
+	public function __construct( $truck, $from = 'post' ) {
+		if ( is_a( $download, 'WP_Post' ) && 'post' == $from ) {
 			$this->ID   = $truck->ID;
 			$this->post = $truck;
-		} elseif ( is_a( $truck, 'Curbside_Truck' ) ) {
+		} elseif ( is_a( $truck, 'Curbside_Truck' ) && 'truck' == $from ) {
 			$this->ID   = $truck->ID;
 			$this->post = $truck->post;
+		} elseif ( 'menu' == $from ) {
+			$this->ID   = $this->_get_from_menu( $truck );
+			$this->post = get_post( $this->ID );
+		} elseif ( 'menu-item' == $from ) {
+			$this->ID   = $this->_get_from_menu_item( $truck );
+			$this->post = get_post( $this->ID );
 		} else {
 			$this->ID   = $truck;
 			$this->post = get_post( $truck );
@@ -78,6 +84,26 @@ class Curbside_Truck {
 		$menu = new Curbside_Menu( $connected->post );
 
 		return $menu;
+	}
+
+	public function get_menu_url() {
+		$url = get_permalink( $this->ID );
+		$url = trailingslashit( $url . 'menu' );
+
+		return $url;
+	}
+
+	private function _get_from_menu( $menu ) {
+		$connected = p2p_type( 'menu_to_truck' )->set_direction( 'from' )->get_connected( $menu->ID );
+
+		return $connected->post->ID;
+	}
+
+	private function _get_from_menu_item( $menu_item ) {
+		$menu = new Curbside_Menu( $menu_item, 'menu-item' );
+		$truck = $this->_get_from_menu( $menu );
+
+		return $truck;
 	}
 
 }

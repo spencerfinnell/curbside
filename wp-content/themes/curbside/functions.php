@@ -28,6 +28,8 @@ function curbside_setup() {
 	register_nav_menus( array(
 		'primary' => __( 'Primary Menu', 'curbside' ),
 	) );
+
+	add_theme_support( 'post-thumbnails' );
 }
 endif; // curbside_setup
 add_action( 'after_setup_theme', 'curbside_setup' );
@@ -41,6 +43,9 @@ function curbside_scripts() {
 	wp_enqueue_style( 'curbside-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'ratchet', get_stylesheet_directory_uri() . '/js/ratchet.js' );
+	wp_enqueue_script( 'google-maps', 'http://maps.google.com/maps/api/js?sensor=true' );
+	wp_enqueue_script( 'gmaps', get_stylesheet_directory_uri() . '/js/gmaps.js', array( 'jquery' ) );
+	wp_enqueue_script( 'curbside', get_stylesheet_directory_uri() . '/js/curbside.js' );
 }
 add_action( 'wp_enqueue_scripts', 'curbside_scripts' );
 

@@ -26,20 +26,51 @@ get_header(); ?>
 		<a href="#" class="icon icon-bars pull-right"></a>
 
 		<h1 class="title">
-			<?php the_title(); ?>
+			<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 		</h1>
 	</header>
+
+	<div class="bar bar-standard bar-header-secondary">
+		<span class="btn current-location-label">Current Location:</span> <button class="btn street-address"><?php echo $truck->get_current_location()->get_street(); ?></button>
+	</div>
 
 	<div class="content">
 
 		<div class="card">
-			Map...
+			<div id="map"><span class="icon icon-more"></span></div>
+
+			<?php $coords = $truck->get_current_location()->get_coordinates(); ?>
+
+			<script type="text/javascript">
+				jQuery(document).ready(function($) {
+					var map = curbsideMap();
+
+					var setupMap = function() {
+						map.init({
+							el: '#map',
+							geolocate: true,
+							lat: '<?php echo $coords[ 'lat' ]; ?>',
+							lng: '<?php echo $coords[ 'long' ]; ?>',
+							markers: {
+								0: {
+									lat: '<?php echo $coords[ 'lat' ]; ?>',
+									lng: '<?php echo $coords[ 'long' ]; ?>',
+								}
+							}
+						});
+					};
+
+					$.when( setupMap() ).done(function() {
+						map.drawRoute([ '<?php echo $coords[ 'lat' ]; ?>', '<?php echo $coords[ 'lng' ]; ?>' ]);
+					});
+				});
+			</script>
 		</div>
 
 		<div class="card">
 			<ul class="table-view">
 				<li class="table-view-cell">
-					<a href="<?php the_permalink(); ?>menu/" class="navigate-right">
+					<a href="<?php echo $truck->get_menu_url(); ?>" class="navigate-right">
 						<span class="badge"><?php echo $truck->get_menu()->get_items()->found_posts; ?></span>
 						Menu Items
 					</a>
@@ -54,6 +85,12 @@ get_header(); ?>
 					<a class="navigate-right">
 						<span class="badge">0</span>
 						Rate and Review
+					</a>
+				</li>
+				<li class="table-view-cell">
+					<a class="navigate-right">
+						<span class="badge">1.2 Miles</span>
+						Directions
 					</a>
 				</li>
 			</ul>

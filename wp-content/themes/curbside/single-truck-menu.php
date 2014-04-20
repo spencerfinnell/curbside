@@ -28,7 +28,7 @@ get_header(); ?>
 
 		<a href="#" class="icon icon-bars pull-right"></a>
 
-		<h1 class="title">Menu</h1>
+		<h1 class="title"><a href="<?php the_permalink(); ?>">Menu</a></h1>
 	</header>
 
 	<div class="content">
