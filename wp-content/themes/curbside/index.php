@@ -27,7 +27,7 @@ get_header(); ?>
 	<div class="content">
 
 		<div class="card">
-			<div id="map"></div>
+			<div id="map"><span class="icon icon-more"></span></div>
 
 			<script type="text/javascript">
 				jQuery(document).ready(function($) {
@@ -35,7 +35,9 @@ get_header(); ?>
 
 					map.init({
 						el: '#map',
-						geolocate: true
+						geolocate: true,
+						lat: '',
+						lng: ''
 					});
 				});
 			</script>

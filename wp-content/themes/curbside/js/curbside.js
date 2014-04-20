@@ -14,6 +14,7 @@ function curbsideMap() {
 		});
 
 		addMarkers();
+		drawRoute();
 
 		return m.map;
 	}
@@ -31,8 +32,10 @@ function curbsideMap() {
 				m.map.addMarker({
 					lat: position.coords.latitude,
 					lng: position.coords.longitude,
-					//icon: 'images/current-location.png',
+					//icon: curbsideSettings.template_path + '/images/current-location.png',
 				});
+
+				m.map.setCenter(position.coords.latitude, position.coords.longitude);
 			},
 			error: function(error) {
 				alert('Geolocation failed: ' + error.message);
@@ -58,10 +61,52 @@ function curbsideMap() {
 		});
 	}
 
-	function canvasHeight() {
-		if ( $(window).height() < 600 ) {
-			$( m.getSetting( 'el' ) ).css( 'height', 'auto' );
+	function drawRoute() {
+		if ( ! m.getSetting( 'toPlace' ) ) {
+			return;
 		}
+
+		/*m.getMap().drawRoute({
+			origin: m.geoLocated,
+			destination: m.getSetting( 'toPlace' ),
+			travelMode: 'walking',
+			strokeColor: '#131540',
+			strokeOpacity: 0.6,
+			strokeWeight: 6
+		});
+
+		console.log(m.geoLocated, m.getSetting( 'toPlace' ));*/
+
+		var routes = m.getMap().getRoutes({
+			origin: m.geoLocated,
+			destination: m.getSetting( 'toPlace' ),
+			travelMode: 'walking',
+			callback: function( results ) {
+				m.route = new GMaps.Route({
+					map: m.getMap(),
+              		route: results[0],
+					strokeColor: '#131540',
+					strokeOpacity: 0.6,
+					strokeWeight: 6
+				});
+
+				$.each(results[0].legs[0].steps, function() {
+					m.route.forward();
+				});
+
+				m.getMap().fitZoom();
+
+				$( '.distance-to' ).html( results[0].legs[0].distance.text );
+			}
+		});
+
+		//m.distanceTo = m.getMap().geometry.spherical.computeDistanceBetween( m.geoLocated, m.getSetting( 'toPlace' ) );
+
+		//console.log( m.distanceTo );
+	}
+
+	function canvasHeight() {
+
 	}
 
 	m.init = function(settings) {
@@ -83,17 +128,6 @@ function curbsideMap() {
 
 	m.getMap = function() {
 		return m.map;
-	},
-
-	m.drawRoute = function( destination ) {
-		m.getMap().drawRoute({
-			origin: m.getLocated,
-			destination: destination,
-			travelMode: 'walking',
-			strokeColor: '#131540',
-			strokeOpacity: 0.6,
-			strokeWeight: 6
-		});
 	}
 
 	return m;

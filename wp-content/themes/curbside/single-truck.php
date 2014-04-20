@@ -45,23 +45,18 @@ get_header(); ?>
 				jQuery(document).ready(function($) {
 					var map = curbsideMap();
 
-					var setupMap = function() {
-						map.init({
-							el: '#map',
-							geolocate: true,
-							lat: '<?php echo $coords[ 'lat' ]; ?>',
-							lng: '<?php echo $coords[ 'long' ]; ?>',
-							markers: {
-								0: {
-									lat: '<?php echo $coords[ 'lat' ]; ?>',
-									lng: '<?php echo $coords[ 'long' ]; ?>',
-								}
+					map.init({
+						el: '#map',
+						geolocate: true,
+						lat: <?php echo $coords[ 'lat' ]; ?>,
+						lng: <?php echo $coords[ 'long' ]; ?>,
+						markers: {
+							0: {
+								lat: <?php echo $coords[ 'lat' ]; ?>,
+								lng: <?php echo $coords[ 'long' ]; ?>,
 							}
-						});
-					};
-
-					$.when( setupMap() ).done(function() {
-						map.drawRoute([ '<?php echo $coords[ 'lat' ]; ?>', '<?php echo $coords[ 'lng' ]; ?>' ]);
+						},
+						toPlace: [ <?php echo $coords[ 'lat' ]; ?>, <?php echo $coords[ 'long' ]; ?> ]
 					});
 				});
 			</script>
@@ -89,7 +84,7 @@ get_header(); ?>
 				</li>
 				<li class="table-view-cell">
 					<a class="navigate-right">
-						<span class="badge">1.2 Miles</span>
+						<span class="badge distance-to">0 km</span>
 						Directions
 					</a>
 				</li>
