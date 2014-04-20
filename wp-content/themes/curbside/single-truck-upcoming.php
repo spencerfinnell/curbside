@@ -13,6 +13,10 @@
 
 get_header(); ?>
 
+	<?php while ( have_posts() ) : the_post(); ?>
+
+	<?php $truck = new Curbside_Truck( $post ); ?>
+
 	<header class="bar bar-nav">
 		<a href="<?php the_permalink(); ?>" class="btn btn-link btn-nav pull-left">
 			<span class="icon icon-left-nav"></span>
@@ -21,8 +25,18 @@ get_header(); ?>
 
 		<a href="#" class="icon icon-bars pull-right"></a>
 
-		<h1 class="title">Menu</h1>
+		<h1 class="title">
+			Upcoming Locations
+		</h1>
 	</header>
+
+	<?php if ( is_search() ) : ?>
+		<div class="bar bar-standard bar-header-secondary">
+			<form action="" method="post">
+				<input type="search" placeholder="Search" value="<?php echo get_search_query(); ?>" name="s">
+			</form>
+		</div>
+	<?php endif; ?>
 
 	<div class="content">
 
@@ -33,25 +47,27 @@ get_header(); ?>
 		<div class="card">
 			<ul class="table-view">
 				<li class="table-view-cell">
-					<a class="navigate-right">
-						<span class="badge">5</span>
+					<a href="<?php the_permalink(); ?>menu/" class="navigate-right">
+						<span class="badge"><?php echo $truck->get_menu_items()->found_posts; ?></span>
 						Menu Items
 					</a>
 				</li>
 				<li class="table-view-cell">
-					<a class="navigate-right">
-						<span class="badge">5</span>
+					<a href="<?php the_permalink(); ?>upcoming/" class="navigate-right">
+						<span class="badge"><?php echo $truck->get_upcoming_locations()->found_posts; ?></span>
 						Upcoming Locations
 					</a>
 				</li>
 				<li class="table-view-cell">
 					<a class="navigate-right">
-						<span class="badge">5</span>
+						<span class="badge">0</span>
 						Rate and Review
 					</a>
 				</li>
 			</ul>
 		</div>
+
+		<?php endwhile; ?>
 
 		<?php locate_template( array( 'bar-tab.php' ), true ); ?>
 

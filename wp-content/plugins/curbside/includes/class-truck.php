@@ -55,7 +55,17 @@ class Curbside_Truck {
 		return $location;
 	}
 
-	public function get_menus() {
+	public function get_upcoming_locations() {
+		$locations = $this->get_locations( array(
+			'post_status' => 'future',
+			'order' => 'asc',
+			'nopaging' => true
+		) );
+
+		return $locations;
+	}
+
+	public function get_menu() {
 		$defaults = array(
 			'connected_type' => 'menu_to_truck',
 			'connected_items' => $this->post
@@ -65,7 +75,9 @@ class Curbside_Truck {
 
 		$connected = new WP_Query( $args );
 
-		return $connected;
+		$menu = new Curbside_Menu( $connected->post );
+
+		return $menu;
 	}
 
 }

@@ -24,11 +24,14 @@ class Curbside_Cuisine {
 
 	public function __construct() {
 		include( 'includes/abstracts/abstract-post-type.php' );
+		include( 'includes/abstracts/abstract-taxonomy.php' );
 		include( 'includes/class-geocode.php' );
 		include( 'includes/class-trucks.php' );
 		include( 'includes/class-truck.php' );
 		include( 'includes/class-locations.php' );
 		include( 'includes/class-menus.php' );
+		include( 'includes/class-menu.php' );
+		include( 'includes/class-menu-items.php' );
 		include( 'includes/class-menu-item.php' );
 
 		add_action( 'init', array( $this, 'textdomain' ) );
@@ -36,7 +39,7 @@ class Curbside_Cuisine {
 		add_action( 'init', array( 'Curbside_Trucks', 'init' ) );
 		add_action( 'init', array( 'Curbside_Locations', 'init' ) );
 		add_action( 'init', array( 'Curbside_Menus', 'init' ) );
-		add_action( 'init', array( 'Curbside_Menu_Item', 'init' ) );
+		add_action( 'init', array( 'Curbside_Menu_Items', 'init' ) );
 
 		add_action( 'p2p_init', array( $this, 'p2p' ) );
 	}

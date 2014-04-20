@@ -13,8 +13,15 @@
 
 get_header(); ?>
 
+	<?php while ( have_posts() ) : the_post(); ?>
+
+	<?php
+		$truck = new Curbside_Truck( $post );
+		$menu = $truck->get_menu();
+	?>
+
 	<header class="bar bar-nav">
-		<a href="<?php the_permalink(); ?>" class="btn btn-link btn-nav pull-left">
+		<a href="<?php the_permalink(); ?>" class="btn btn-link btn-nav pull-left" data-transition="slide-out">
 			<span class="icon icon-left-nav"></span>
 			Back
 		</button>
@@ -27,31 +34,25 @@ get_header(); ?>
 	<div class="content">
 
 		<div class="card">
-			Map...
-		</div>
-
-		<div class="card">
 			<ul class="table-view">
-				<li class="table-view-cell">
-					<a class="navigate-right">
-						<span class="badge">5</span>
-						Menu Items
-					</a>
-				</li>
-				<li class="table-view-cell">
-					<a class="navigate-right">
-						<span class="badge">5</span>
-						Upcoming Locations
-					</a>
-				</li>
-				<li class="table-view-cell">
-					<a class="navigate-right">
-						<span class="badge">5</span>
-						Rate and Review
-					</a>
-				</li>
+				<?php foreach ( get_terms( array( 'menu_item-item_category' ) ) as $category ) : ?>
+					<?php $items = $menu->get_items( $category->term_id ); ?>
+
+					<li class="table-view-cell table-view-divider"><?php echo $category->name; ?></li>
+
+					<?php while ( $items->have_posts() ) : $items->the_post(); ?>
+						<li class="table-view-cell">
+							<a href="<?php the_permalink(); ?>" class="navigate-right">
+								<span class="badge">$0.00</span>
+								<?php the_title(); ?>
+							</a>
+						</li>
+					<?php endwhile; ?>
+				<?php endforeach; ?>
 			</ul>
 		</div>
+
+		<?php endwhile; ?>
 
 		<?php locate_template( array( 'bar-tab.php' ), true ); ?>
 

@@ -47,16 +47,17 @@ body.admin-bar .bar-header-secondary~.content {
 	box-shadow: inset rgba(0, 0, 0, .15) 0 3px 3px;
 }
 
-.bar {
+.bar,
+.table-view .table-view-divider {
 	background-color: #4a4c50;
 	background: linear-gradient(to top, #4a4c50 0%, #54565c 100%);
 }
 
-.title {
-	color: #fff;
-}
-
-.title a:active {
+.title,
+.bar-nav .btn-link,
+.table-view .table-view-divider,
+.title a:active,
+.bar-nav .btn-link:active {
 	color: #fff;
 }
 
@@ -81,6 +82,11 @@ body.admin-bar .bar-header-secondary~.content {
 
 .table-view-cell>a:not(.btn):active {
 	background-color: #eaeaea;
+}
+
+.table-view .table-view-divider {
+	padding-top: 3px;
+	padding-bottom: 3px;
 }
 
 .badge {
