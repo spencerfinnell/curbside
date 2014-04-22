@@ -18,10 +18,10 @@ get_header(); ?>
 	<?php $truck = new Curbside_Truck( $post ); ?>
 
 	<header class="bar bar-nav">
-		<button class="btn btn-link btn-nav pull-left">
+		<a href="<?php echo home_url(); ?>" class="btn btn-link btn-nav pull-left">
 			<span class="icon icon-left-nav"></span>
 			Back
-		</button>
+		</a>
 
 		<a href="#" class="icon icon-bars pull-right"></a>
 
@@ -31,7 +31,7 @@ get_header(); ?>
 	</header>
 
 	<div class="bar bar-standard bar-header-secondary">
-		<span class="btn current-location-label">Current Location:</span> <button class="btn street-address"><?php echo $truck->get_current_location()->get_street(); ?></button>
+		<span class="btn current-location-label">Current Location:</span> <a href="<?php echo get_permalink( $truck->get_current_location()->location->ID  ); ?>" class="btn street-address"><?php echo $truck->get_current_location()->get_street(); ?></a>
 	</div>
 
 	<div class="content">
@@ -39,7 +39,7 @@ get_header(); ?>
 		<div class="card">
 			<div id="map"><span class="icon icon-more"></span></div>
 
-			<?php $coords = $truck->get_current_location()->get_coordinates(); ?>
+			<?php $coords = $truck->get_current_location()->get_coordinates();?>
 
 			<script type="text/javascript">
 				jQuery(document).ready(function($) {
@@ -49,15 +49,17 @@ get_header(); ?>
 						el: '#map',
 						geolocate: true,
 						lat: <?php echo $coords[ 'lat' ]; ?>,
-						lng: <?php echo $coords[ 'long' ]; ?>,
+						lng: <?php echo $coords[ 'lng' ]; ?>,
 						markers: {
 							0: {
 								lat: <?php echo $coords[ 'lat' ]; ?>,
-								lng: <?php echo $coords[ 'long' ]; ?>,
+								lng: <?php echo $coords[ 'lng' ]; ?>,
 							}
 						},
-						toPlace: [ <?php echo $coords[ 'lat' ]; ?>, <?php echo $coords[ 'long' ]; ?> ]
+						toPlace: [ <?php echo $coords[ 'lat' ]; ?>, <?php echo $coords[ 'lng' ]; ?> ]
 					});
+
+					map.fitBounds();
 				});
 			</script>
 		</div>

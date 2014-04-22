@@ -50,14 +50,7 @@ function curbsideMap() {
 			return;
 		}
 
-		$.each(m.getSetting( 'markers' ), function(key, coords) {
-			console.log(m.getMap());
-			m.map.addMarker({
-				lat: coords.lat,
-				lng: coords.lng,
-				//icon: 'images/current-location.png',
-			});
-		});
+		m.getMap().addMarkers(m.getSetting( 'markers' ));
 	}
 
 	function drawRoute() {
@@ -80,9 +73,13 @@ function curbsideMap() {
 
 				$.each(results[0].legs[0].steps, function() {
 					m.route.forward();
-				});
 
-				m.getMap().fitZoom();
+					if ( ! m.route.steps[m.route.step_count] ) {
+						return;
+					}
+
+					$( '.step-list' ).append( '<li class="table-view-cell"><span class="badge">' + m.route.steps[m.route.step_count].distance.text + '</span>' + m.route.steps[m.route.step_count].instructions + '</li>' );
+				});
 
 				$( '.distance-to' ).html( results[0].legs[0].distance.text );
 			}
@@ -90,7 +87,7 @@ function curbsideMap() {
 	}
 
 	function canvasHeight() {
-
+		//$( m.getSetting( 'el' ) ).css( 'height' )
 	}
 
 	m.init = function(settings) {

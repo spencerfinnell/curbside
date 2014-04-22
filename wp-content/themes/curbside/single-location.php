@@ -13,21 +13,32 @@
 
 get_header(); ?>
 
+	<?php while ( have_posts() ) : the_post(); ?>
+
+	<?php
+		$truck = new Curbside_Truck( $post, 'location' );
+		$location = new Curbside_Location( $post );
+	?>
+
 	<header class="bar bar-nav">
-		<a href="<?php the_permalink(); ?>" class="btn btn-link btn-nav pull-left">
+		<a href="<?php echo get_permalink( $truck->ID ); ?>upcoming/" class="btn btn-link btn-nav pull-left">
 			<span class="icon icon-left-nav"></span>
 			Back
-		</button>
+		</a>
 
 		<a href="#" class="icon icon-bars pull-right"></a>
 
-		<h1 class="title">Curbside Cuisine</h1>
+		<h1 class="title">
+			<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+		</h1>
 	</header>
 
 	<div class="content">
 
 		<div class="card">
 			<div id="map"><span class="icon icon-more"></span></div>
+
+			<?php $coords = $location->get_coordinates(); ?>
 
 			<script type="text/javascript">
 				jQuery(document).ready(function($) {
@@ -36,13 +47,27 @@ get_header(); ?>
 					map.init({
 						el: '#map',
 						geolocate: true,
-						lat: '',
-						lng: '',
-						markers: <?php echo json_encode( Curbside_Trucks::get_current_trucks() ); ?>
+						lat: <?php echo $coords[ 'lat' ]; ?>,
+						lng: <?php echo $coords[ 'lng' ]; ?>,
+						markers: {
+							0: {
+								lat: <?php echo $coords[ 'lat' ]; ?>,
+								lng: <?php echo $coords[ 'lng' ]; ?>,
+							}
+						},
+						toPlace: [ <?php echo $coords[ 'lat' ]; ?>, <?php echo $coords[ 'lng' ]; ?> ]
 					});
 				});
 			</script>
 		</div>
+
+		<div class="card">
+			<ul class="table-view step-list">
+
+			</ul>
+		</div>
+
+		<?php endwhile; ?>
 
 		<?php locate_template( array( 'bar-tab.php' ), true ); ?>
 

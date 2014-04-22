@@ -40,10 +40,14 @@ get_header(); ?>
 
 					<li class="table-view-cell table-view-divider"><?php echo $category->name; ?></li>
 
-					<?php while ( $items->have_posts() ) : $items->the_post(); ?>
+					<?php
+						while ( $items->have_posts() ) :
+							$items->the_post();
+							$item = new Curbside_Menu_Item( $post );
+					?>
 						<li class="table-view-cell">
 							<a href="<?php the_permalink(); ?>" class="navigate-right">
-								<span class="badge">$0.00</span>
+								<span class="badge"><?php echo $item->get_price(); ?></span>
 								<?php the_title(); ?>
 							</a>
 						</li>

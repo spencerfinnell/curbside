@@ -15,7 +15,10 @@ get_header(); ?>
 
 	<?php while ( have_posts() ) : the_post(); ?>
 
-	<?php $truck = new Curbside_Truck( $post, $from = 'menu-item' );?>
+	<?php
+		$truck = new Curbside_Truck( $post, $from = 'menu-item' );
+		$item  = new Curbside_Menu_Item( $post );
+	?>
 
 	<header class="bar bar-nav">
 		<a href="<?php echo $truck->get_menu_url(); ?>" class="btn btn-link btn-nav pull-left" data-transition="slide-out">
@@ -40,7 +43,7 @@ get_header(); ?>
 					<?php the_content(); ?>
 				</li>
 				<li class="table-view-cell">
-					$0.00
+					<?php echo $item->get_price(); ?>
 				</li>
 			</ul>
 		</div>

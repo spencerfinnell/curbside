@@ -4,6 +4,8 @@ class Curbside_Location {
 
 	public function __construct( $location ) {
 		$this->location = $location;
+
+		return $this->location;
 	}
 
 	public function get_date() {
@@ -20,7 +22,7 @@ class Curbside_Location {
 
 	public function get_coordinates() {
 		return array(
-			'long' => $this->location->geolocation_long,
+			'lng' => $this->location->geolocation_long,
 			'lat' => $this->location->geolocation_lat
 		);
 	}

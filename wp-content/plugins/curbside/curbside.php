@@ -51,9 +51,10 @@ class Curbside_Cuisine {
 
 	public function p2p() {
 		p2p_register_connection_type( array(
-			'name'       => 'location_to_truck',
-			'from'       => 'location',
-			'to'         => 'truck'
+			'name'            => 'location_to_truck',
+			'from'            => 'location',
+			'to'              => 'truck',
+			'from_query_vars' => array('post_status' => 'any')
 		) );
 
 		p2p_register_connection_type( array(

@@ -7,7 +7,7 @@ class Curbside_Truck {
 	public $post;
 
 	public function __construct( $truck, $from = 'post' ) {
-		if ( is_a( $download, 'WP_Post' ) && 'post' == $from ) {
+		if ( is_a( $truck, 'WP_Post' ) && 'post' == $from ) {
 			$this->ID   = $truck->ID;
 			$this->post = $truck;
 		} elseif ( is_a( $truck, 'Curbside_Truck' ) && 'truck' == $from ) {
@@ -18,6 +18,9 @@ class Curbside_Truck {
 			$this->post = get_post( $this->ID );
 		} elseif ( 'menu-item' == $from ) {
 			$this->ID   = $this->_get_from_menu_item( $truck );
+			$this->post = get_post( $this->ID );
+		} elseif( 'location' == $from ) {
+			$this->ID   = $this->_get_from_location( $truck );
 			$this->post = get_post( $this->ID );
 		} else {
 			$this->ID   = $truck;
@@ -104,6 +107,20 @@ class Curbside_Truck {
 		$truck = $this->_get_from_menu( $menu );
 
 		return $truck;
+	}
+
+	private function _get_from_location( $location ) {
+		$defaults = array(
+			'connected_type' => 'location_to_truck',
+			'connected_items' => $location->ID,
+			'post_status' => 'any'
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+
+		$connected = new WP_Query( $args );
+
+		return $connected->post->ID;
 	}
 
 }
