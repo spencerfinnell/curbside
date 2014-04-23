@@ -19,6 +19,11 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
+	<link rel="apple-touch-icon" href="<?php get_template_directory_uri(); ?>/images/touch-icon-iphone-60x60-precomposed.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="<?php get_template_directory_uri(); ?>/images/touch-icon-ipad-76x76-precomposed.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="<?php get_template_directory_uri(); ?>/images/touch-icon-iphone-retina-120x120-precomposed.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="<?php get_template_directory_uri(); ?>/images/touch-icon-ipad-retina-152x152-precomposed.png">
+
 	<title><?php wp_title( ' - ', true, 'right' ); ?></title>
 
 	<link rel="profile" href="http://gmpg.org/xfn/11">
