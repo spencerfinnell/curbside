@@ -35,11 +35,10 @@ get_header(); ?>
 						geolocate: true,
 						lat: '',
 						lng: '',
-						markers: <?php echo json_encode( Curbside_Trucks::get_current_trucks(), JSON_NUMERIC_CHECK ); ?>
+						markers: <?php echo json_encode( Curbside_Trucks::get_current_trucks() ); ?>
 					});
 				});
 			</script>
-			<?php print_r( Curbside_Trucks::get_current_trucks() ); ?>
 		</div>
 
 	</div>
