@@ -184,7 +184,7 @@ body.admin-bar .bar-header-secondary~.content {
 	padding-top: 4px;
 }
 
-.bar-tab {
+.bar-tab.bar-footer {
 	background-color: #b7b7b7;
 	border-top: 1px solid #525558;
 	box-shadow: inset 0 0 3px 0 rgba(255, 255, 255, .20);
@@ -227,6 +227,10 @@ body.admin-bar .bar-header-secondary~.content {
 	border-radius: 6px;
 	border-color: #525558;
 	box-shadow: inset rgba(0, 0, 0, .05) 0 0 0 3px, rgba(0, 0, 0, .20) 0 2px 3px;
+}
+
+.table-view-cell > a:not(.btn):active {
+	background: transparent;
 }
 
 #map {
