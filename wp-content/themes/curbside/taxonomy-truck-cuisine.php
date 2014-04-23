@@ -51,7 +51,7 @@ get_header(); ?>
 			<ul class="table-view">
 			<?php foreach ( $trucks as $truck ) : ?>
 				<li class="table-view-cell">
-					<a href="<?php echo get_permalink( $truck[ 'details' ][ 'permalink' ] ); ?>" class="navigate-right"><?php echo $truck[ 'details' ][ 'title' ]; ?></a>
+					<a href="<?php echo $truck[ 'details' ][ 'permalink' ]; ?>" class="navigate-right"><?php echo $truck[ 'details' ][ 'title' ]; ?></a>
 				</li>
 			<?php endforeach; ?>
 			</ul>
