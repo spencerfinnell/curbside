@@ -55,7 +55,8 @@ function curbsideMap() {
 
 				m.addMarker({
 					lat: position.coords.latitude,
-					lng: position.coords.longitude
+					lng: position.coords.longitude,
+					icon: curbsideSettings.template_path + '/images/current-location.png'
 				});
 
 				m.map.setCenter(position.coords.latitude, position.coords.longitude);
@@ -152,21 +153,24 @@ function curbsideMap() {
 	},
 
 	m.addMarker = function(value) {
-		var marker = m.getMap().addMarker({
+		var defaults = {
 			lat: value.lat,
 			lng: value.lng,
 			details: value.details,
-			/*infoWindow: {
-				content: '<p>HTML Content</p>'
-			},*/
 			click: function(e) {
 				if ( value.details.permalink ) {
 					window.location.replace( value.details.permalink );
 				}
 			}
-		});
+		}
 
-		m.bounds.extend( new google.maps.LatLng( value.lat, value.lng ) );
+		var settings = $.extend(value, defaults);
+
+		console.log(settings);
+
+		var marker = m.getMap().addMarker(settings);
+
+		m.bounds.extend( new google.maps.LatLng( settings.lat, settings.lng ) );
 	}
 
 	return m;
