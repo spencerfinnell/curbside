@@ -87,7 +87,7 @@ get_header(); ?>
 					</a>
 				</li>
 				<li class="table-view-cell">
-					<a class="navigate-right">
+					<a href="<?php echo get_permalink( $truck->get_current_location()->location->ID ); ?>" class="navigate-right">
 						<span class="badge distance-to">0 km</span>
 						Directions
 					</a>

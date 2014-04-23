@@ -74,7 +74,7 @@ class Curbside_Trucks {
 			'nopaging' => true
 		) );
 
-		$locations = array( '' => array() );
+		$locations = array();
 
 		if ( ! $trucks->have_posts() ) {
 			return $locations;
@@ -85,8 +85,6 @@ class Curbside_Trucks {
 
 			$truck = new Curbside_Truck( get_post() );
 			$coords = $truck->get_current_location()->get_coordinates();
-
-			print_r( $truck );
 
 			$locations[$truck->ID] = array(
 				'lat' => $coords[ 'lat' ],

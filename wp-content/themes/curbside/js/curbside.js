@@ -98,22 +98,11 @@ function curbsideMap() {
 		var windowHeight = $(window).height();
 		var contentHeight = $( '.content' ).height();
 
-		if ( contentHeight > windowHeight ) {
-			return map.css( 'height', contentHeight - 50 );
+		if ( $( 'body' ).hasClass( 'home' ) ) {
+			return map.css( 'height', contentHeight - 25 );
 		}
 
-		var contentContents = $( '.content > *' );
-		var contentContentsHeight = 0;
-
-		var mapHeight = map.outerHeight();
-
-		$.each(contentContents, function() {
-			contentContentsHeight += parseInt( $(this).outerHeight() );
-		});
-
-		var remainingHeight = contentHeight - contentContentsHeight;
-
-		map.css( 'height', ( mapHeight + remainingHeight ) - 30 );
+		return map.css( 'height', contentHeight - 100 );
 	}
 
 	m.init = function(settings) {

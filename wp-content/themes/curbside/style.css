@@ -99,8 +99,8 @@ body.admin-bar .bar-header-secondary~.content {
 }
 
 .title {
-	max-width: 80%;
-	left: 10%;
+	max-width: 60%;
+	left: 20%;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;

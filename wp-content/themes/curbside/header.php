@@ -27,7 +27,7 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class( is_home() ? 'home' : '' ); ?>>
 
 <div class="off-navigation">
 	<ul class="table-view">
