@@ -74,7 +74,7 @@ class Curbside_Trucks {
 			'nopaging' => true
 		) );
 
-		$locations = array();]
+		$locations = array();
 
 		if ( ! $trucks->have_posts() ) {
 			return $locations;
