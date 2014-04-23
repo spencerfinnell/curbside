@@ -98,6 +98,14 @@ body.admin-bar .bar-header-secondary~.content {
 	background: linear-gradient(to top, #4a4c50 0%, #54565c 100%);
 }
 
+.title {
+	max-width: 80%;
+	left: 10%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
 .title,
 .bar-nav .btn-link,
 .table-view .table-view-divider,
