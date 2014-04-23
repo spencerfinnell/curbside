@@ -95,7 +95,12 @@ function curbsideMap() {
 			return;
 		}
 
+		var windowHeight = $(window).height();
 		var contentHeight = $( '.content' ).height();
+
+		if ( contentHeight > windowHeight ) {
+			return map.css( 'height', contentHeight - 50 );
+		}
 
 		var contentContents = $( '.content > *' );
 		var contentContentsHeight = 0;
