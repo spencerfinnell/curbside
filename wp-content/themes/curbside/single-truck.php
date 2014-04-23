@@ -30,6 +30,8 @@ get_header(); ?>
 		</h1>
 	</header>
 
+	<?php locate_template( array( 'bar-tab.php' ), true ); ?>
+
 	<div class="bar bar-standard bar-header-secondary">
 		<span class="btn current-location-label">Current Location:</span> <a href="<?php echo get_permalink( $truck->get_current_location()->location->ID  ); ?>" class="btn street-address"><?php echo $truck->get_current_location()->get_street(); ?></a>
 	</div>
@@ -59,7 +61,7 @@ get_header(); ?>
 						toPlace: [ <?php echo $coords[ 'lat' ]; ?>, <?php echo $coords[ 'lng' ]; ?> ]
 					});
 
-					map.fitBounds();
+					//map.fitBounds();
 				});
 			</script>
 		</div>
@@ -94,8 +96,6 @@ get_header(); ?>
 		</div>
 
 		<?php endwhile; ?>
-
-		<?php locate_template( array( 'bar-tab.php' ), true ); ?>
 
 	</div>
 

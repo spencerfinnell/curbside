@@ -14,6 +14,10 @@ class Curbside_Trucks {
 
 	public function __construct() {
 		$post_type_object = new Curbside_Post_Type( 'Truck' );
+		$cuisine = new Curbside_Taxonomy( 'Cuisine', $post_type_object->post_type_slug );
+		$meal = new Curbside_Taxonomy( 'Meal', $post_type_object->post_type_slug );
+		$price = new Curbside_Taxonomy( 'Price', $post_type_object->post_type_slug );
+		$price = new Curbside_Taxonomy( 'Tag', $post_type_object->post_type_slug );
 
 		$this->add_rewrite_endpoints();
 
@@ -76,8 +80,15 @@ class Curbside_Trucks {
 			$trucks->the_post();
 
 			$truck = new Curbside_Truck( get_post() );
+			$coords = $truck->get_current_location()->get_coordinates();
 
-			$locations[] = $truck->get_current_location()->get_coordinates();
+			$locations[$truck->ID] = array(
+				'lat' => $coords[ 'lat' ],
+				'lng' => $coords[ 'lng' ],
+				'details' => array(
+					'permalink' => get_permalink( $truck->ID )
+				)
+			);
 		}
 
 		return $locations;

@@ -1,4 +1,4 @@
-<nav class="bar bar-tab">
+<nav class="bar bar-tab bar-footer">
 	<a class="tab-item <?php echo is_home() ? 'active' : ''; ?>" href="<?php echo home_url(); ?>">
 		<span class="icon icon-home"></span>
 		<span class="tab-label">Home</span>

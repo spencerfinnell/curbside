@@ -24,18 +24,22 @@ get_header(); ?>
 		<a href="<?php echo $truck->get_menu_url(); ?>" class="btn btn-link btn-nav pull-left" data-transition="slide-out">
 			<span class="icon icon-left-nav"></span>
 			Back
-		</button>
+		</a>
 
 		<a href="#" class="icon icon-bars pull-right"></a>
 
 		<h1 class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
 	</header>
 
+	<?php locate_template( array( 'bar-tab.php' ), true ); ?>
+
 	<div class="content">
 
+		<?php if ( has_post_thumbnail() ) : ?>
 		<div class="content-padded">
 			<?php the_post_thumbnail(); ?>
 		</div>
+		<?php endif; ?>
 
 		<div class="card">
 			<ul class="table-view">
@@ -49,8 +53,6 @@ get_header(); ?>
 		</div>
 
 		<?php endwhile; ?>
-
-		<?php locate_template( array( 'bar-tab.php' ), true ); ?>
 
 	</div>
 

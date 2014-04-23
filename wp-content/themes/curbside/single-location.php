@@ -33,6 +33,8 @@ get_header(); ?>
 		</h1>
 	</header>
 
+	<?php locate_template( array( 'bar-tab.php' ), true ); ?>
+
 	<div class="content">
 
 		<div class="card">
@@ -68,8 +70,6 @@ get_header(); ?>
 		</div>
 
 		<?php endwhile; ?>
-
-		<?php locate_template( array( 'bar-tab.php' ), true ); ?>
 
 	</div>
 

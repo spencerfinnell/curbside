@@ -29,7 +29,7 @@ function curbsideMap() {
 
 				initMap();
 
-				m.map.addMarker({
+				m.addMarker({
 					lat: position.coords.latitude,
 					lng: position.coords.longitude
 				});
@@ -50,7 +50,9 @@ function curbsideMap() {
 			return;
 		}
 
-		m.getMap().addMarkers(m.getSetting( 'markers' ));
+		$.each(m.getSetting( 'markers' ), function(key, value) {
+			m.addMarker(value);
+		});
 	}
 
 	function drawRoute() {
@@ -109,6 +111,19 @@ function curbsideMap() {
 
 	m.getMap = function() {
 		return m.map;
+	},
+
+	m.addMarker = function(value) {
+		var marker = m.getMap().addMarker({
+			lat: value.lat,
+			lng: value.lng,
+			details: value.details,
+			click: function(e) {
+				if ( value.details.permalink ) {
+					window.location.replace( value.details.permalink );
+				}
+			}
+		});
 	}
 
 	return m;

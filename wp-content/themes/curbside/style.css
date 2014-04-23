@@ -135,6 +135,10 @@ body.admin-bar .bar-header-secondary~.content {
 	background: linear-gradient(to bottom, #a5a5a5 0%, #868686 100%);
 }
 
+.bar input[type=search] {
+	color: #555;
+}
+
 .tab-item {
 	border-right: 1px solid #626262;
 	border-left: 1px solid rgba(255, 255, 255, .25);
