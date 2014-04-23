@@ -16,7 +16,7 @@ get_header(); ?>
 	</header>
 
 	<div class="bar bar-standard bar-header-secondary">
-		<input type="search" placeholder="Search" value="<?php echo get_search_query(); ?>">
+		<?php get_search_form(); ?>
 	</div>
 
 	<?php locate_template( array( 'bar-tab.php' ), true ); ?>

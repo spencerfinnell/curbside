@@ -88,8 +88,27 @@ function curbsideMap() {
 		});
 	}
 
-	function canvasHeight() {
-		//$( m.getSetting( 'el' ) ).css( 'height' )
+	function mapHeight() {
+		var map = $( '#map' );
+
+		if ( ! map.length > 0 ) {
+			return;
+		}
+
+		var contentHeight = $( '.content' ).height();
+
+		var contentContents = $( '.content > *' );
+		var contentContentsHeight = 0;
+
+		var mapHeight = map.outerHeight();
+
+		$.each(contentContents, function() {
+			contentContentsHeight += parseInt( $(this).outerHeight() );
+		});
+
+		var remainingHeight = contentHeight - contentContentsHeight;
+
+		map.css( 'height', ( mapHeight + remainingHeight ) - 30 );
 	}
 
 	m.init = function(settings) {
@@ -97,11 +116,11 @@ function curbsideMap() {
 		m.geoLocated = false;
 		m.map = null;
 
-		canvasHeight();
+		mapHeight();
 		initMap();
 
 		$(window).resize(function() {
-			canvasHeight();
+			mapHeight();
 		});
 	},
 
@@ -118,6 +137,9 @@ function curbsideMap() {
 			lat: value.lat,
 			lng: value.lng,
 			details: value.details,
+			infoWindow: {
+				content: '<p>HTML Content</p>'
+			},
 			click: function(e) {
 				if ( value.details.permalink ) {
 					window.location.replace( value.details.permalink );

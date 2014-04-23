@@ -106,6 +106,14 @@ body.admin-bar .bar-header-secondary~.content {
 	font-size: 14px;
 }
 
+.table-view .table-view-cell.has-form {
+	padding-right: 15px;
+}
+
+.table-view-cell input[type=search] {
+	margin-bottom: 0;
+}
+
 .table-view-cell>a:not(.btn):active {
 	background-color: #eaeaea;
 }

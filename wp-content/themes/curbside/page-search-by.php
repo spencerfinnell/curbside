@@ -26,21 +26,35 @@ get_header(); ?>
 
 		<div class="card">
 			<ul class="table-view">
-				<li class="table-view-cell">
-					<a href="#" class="navigate-right">by <strong>Keyword</strong></a>
+				<li class="table-view-divider">
+					Keyword
 				</li>
-				<li class="table-view-cell">
-					<a href="#" class="navigate-right">by <strong>Cuisine</strong></a>
+				<li class="table-view-cell has-form">
+					<?php get_search_form(); ?>
 				</li>
-				<li class="table-view-cell">
-					<a href="#" class="navigate-right">by <strong>Meal</strong></a>
+
+				<?php
+					$taxes = array( 'truck-cuisine', 'truck-price', 'truck-meal' );
+
+					foreach ( $taxes as $tax ) :
+						$taxonomy = get_taxonomy( $tax, 'truck' );
+				?>
+
+				<li class="table-view-divider">
+					<?php echo $taxonomy->label; ?>
 				</li>
-				<li class="table-view-cell">
-					<a href="#" class="navigate-right">by <strong>Price</strong></a>
-				</li>
-				<li class="table-view-cell">
-					<a href="#" class="navigate-right">by <strong>Tag</strong></a>
-				</li>
+
+					<?php
+						$terms = get_terms( $tax, array( 'hide_empty' => 0 ) );
+
+						foreach ( $terms as $term ) :
+					?>
+					<li class="table-view-cell">
+						<a href="<?php echo get_term_link( $term ); ?>" class="navigate-right"><?php echo $term->name; ?></a>
+					</li>
+					<?php endforeach; ?>
+
+				<?php endforeach; ?>
 			</ul>
 		</div>
 

@@ -24,6 +24,8 @@ get_header(); ?>
 		<h1 class="title">Curbside Cuisine</h1>
 	</header>
 
+	<?php locate_template( array( 'bar-tab.php' ), true ); ?>
+
 	<div class="content">
 
 		<div class="card">
@@ -43,8 +45,6 @@ get_header(); ?>
 				});
 			</script>
 		</div>
-
-		<?php locate_template( array( 'bar-tab.php' ), true ); ?>
 
 	</div>
 
