@@ -39,6 +39,7 @@ get_header(); ?>
 					});
 				});
 			</script>
+			<?php print_r( Curbside_Trucks::get_current_trucks() ); ?>
 		</div>
 
 	</div>

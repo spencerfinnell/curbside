@@ -50,9 +50,9 @@ body.admin-bar .bar-header-secondary~.content {
 }
 
 .site.open {
-	-webkit-transform: translateX(-300px);
-	-moz-transform: translateX(-300px);
-	transform: translateX(-300px);
+	-webkit-transform: translateX(-275px);
+	-moz-transform: translateX(-275px);
+	transform: translateX(-275px);
 }
 
 .off-navigation {
@@ -68,9 +68,9 @@ body.admin-bar .bar-header-secondary~.content {
 	-moz-box-shadow: inset 3px 0px 8px 0px rgba(0, 0, 0, .25);
 	box-shadow: inset 3px 0px 8px 0px rgba(0, 0, 0, .25);
 
-	-webkit-transform: translateX(300px);
-	-moz-transform: translateX(300px);
-	transform: translateX(300px);
+	-webkit-transform: translateX(275px);
+	-moz-transform: translateX(275px);
+	transform: translateX(275px);
 }
 
 .off-navigation.open {
