@@ -16,7 +16,7 @@ get_header(); ?>
 	<header class="bar bar-nav">
 		<a href="#" class="icon icon-bars pull-right"></a>
 
-		<h1 class="title"><?php get_bloginfo( 'name' ); ?></h1>
+		<h1 class="title"><?php echo get_bloginfo( 'name' ); ?></h1>
 	</header>
 
 	<?php locate_template( array( 'bar-tab.php' ), true ); ?>

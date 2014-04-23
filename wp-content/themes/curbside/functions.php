@@ -45,7 +45,7 @@ function curbside_scripts() {
 	wp_enqueue_script( 'ratchet', get_stylesheet_directory_uri() . '/js/ratchet.js' );
 	wp_enqueue_script( 'google-maps', 'http://maps.google.com/maps/api/js?sensor=true' );
 	wp_enqueue_script( 'gmaps', get_stylesheet_directory_uri() . '/js/gmaps.js', array( 'jquery' ) );
-	wp_enqueue_script( 'curbside', get_stylesheet_directory_uri() . '/js/curbside.js' );
+	wp_enqueue_script( 'curbside', get_stylesheet_directory_uri() . '/js/curbside.js', array( 'ratchet' ), 20140421, true );
 
 	wp_localize_script( 'curbside', 'curbsideSettings', array(
 		'template_path' => get_template_directory_uri()
