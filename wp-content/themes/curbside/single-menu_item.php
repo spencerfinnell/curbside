@@ -23,7 +23,6 @@ get_header(); ?>
 	<header class="bar bar-nav">
 		<a href="<?php echo $truck->get_menu_url(); ?>" class="btn btn-link btn-nav pull-left" data-transition="slide-out">
 			<span class="icon icon-left-nav"></span>
-			Back
 		</a>
 
 		<a href="#" class="icon icon-bars pull-right"></a>

@@ -20,7 +20,6 @@ get_header(); ?>
 	<header class="bar bar-nav">
 		<a href="<?php echo home_url(); ?>" class="btn btn-link btn-nav pull-left">
 			<span class="icon icon-left-nav"></span>
-			Back
 		</a>
 
 		<a href="#" class="icon icon-bars pull-right"></a>
