@@ -15,7 +15,7 @@ class Curbside_Menu_Item {
 
 		setlocale( LC_MONETARY, 'en_US' );
 
-		return money_format( '%n', $price );
+		return '$' . $price;
 	}
 
 }
