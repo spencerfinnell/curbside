@@ -20,7 +20,7 @@
 			<span class="tab-label">Profile</span>
 		</a>
 
-		<a class="tab-item" href="<?php echo esc_url( add_query_arg( 's', 'Dinner', home_url() ) ); ?>">
+		<a class="tab-item" href="<?php echo get_permalink( get_page_by_path( 'search' ) ); ?>">
 			<span class="icon icon-search"></span>
 			<span class="tab-label">Search</span>
 		</a>

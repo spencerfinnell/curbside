@@ -14,14 +14,9 @@
 get_header(); ?>
 
 	<header class="bar bar-nav">
-		<a href="<?php the_permalink(); ?>" class="btn btn-link btn-nav pull-left">
-			<span class="icon icon-left-nav"></span>
-			Back
-		</button>
-
 		<a href="#" class="icon icon-bars pull-right"></a>
 
-		<h1 class="title">Curbside Cuisine</h1>
+		<h1 class="title"><?php get_bloginfo( 'name' ); ?></h1>
 	</header>
 
 	<?php locate_template( array( 'bar-tab.php' ), true ); ?>

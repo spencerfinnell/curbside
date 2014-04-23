@@ -122,6 +122,12 @@ function curbsideMap() {
 		$(window).resize(function() {
 			mapHeight();
 		});
+
+		$( '.bar.bar-nav .icon-bars' ).click(function(e) {
+			e.preventDefault();
+
+			$( '.off-navigation, .site' ).toggleClass( 'open' );
+		});
 	},
 
 	m.getSetting = function( key ) {

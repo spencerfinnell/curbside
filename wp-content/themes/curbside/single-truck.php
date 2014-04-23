@@ -95,6 +95,21 @@ get_header(); ?>
 			</ul>
 		</div>
 
+		<div class="content-padded truck-tags">
+			<?php
+				$taxes = array( 'truck-cuisine', 'truck-price', 'truck-meal', 'truck-tag' );
+
+				foreach ( $taxes as $tax ) :
+					$terms = wp_get_object_terms( $truck->ID, $tax );
+
+					foreach ( $terms as $term ) :
+				?>
+				<a href="<?php echo get_term_link( $term ); ?>" class="btn"><?php echo $term->name; ?></a>
+				<?php endforeach; ?>
+
+			<?php endforeach; ?>
+		</div>
+
 		<?php endwhile; ?>
 
 	</div>

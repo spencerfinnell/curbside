@@ -74,7 +74,11 @@ class Curbside_Trucks {
 			'nopaging' => true
 		) );
 
-		$locations = array();
+		$locations = array();]
+
+		if ( ! $trucks->have_posts() ) {
+			return $locations;
+		}
 
 		while ( $trucks->have_posts() ) {
 			$trucks->the_post();
@@ -92,6 +96,17 @@ class Curbside_Trucks {
 		}
 
 		return $locations;
+	}
+
+	public static function get_random_trucks() {
+		$trucks = new WP_Query( array(
+			'post_type' => 'truck',
+			'nopaging' => true,
+			'posts_per_page' => 5,
+			'orderby' => 'rand'
+		) );
+
+		return $trucks;
 	}
 
 }

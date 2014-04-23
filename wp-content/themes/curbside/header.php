@@ -28,4 +28,31 @@
 </head>
 
 <body <?php body_class(); ?>>
+
+<div class="off-navigation">
+	<ul class="table-view">
+		<li class="table-view-divider">
+			Quick Links
+		</li>
+		<li class="table-view-cell">
+			<a href="<?php echo home_url(); ?>">Home</a>
+		</li>
+		<li class="table-view-cell">
+			<a href="<?php echo get_permalink( get_page_by_path( 'search' ) ); ?>">Search</a>
+		</li>
+		<li class="table-view-cell">
+			<a href="<?php echo get_permalink( get_page_by_path( 'search' ) ); ?>">Following</a>
+		</li>
+		<li class="table-view-divider">
+			Quick Picks
+		</li>
+		<?php $picks = Curbside_Trucks::get_random_trucks(); ?>
+		<?php while ( $picks->have_posts() ) : $picks->the_post(); ?>
+			<li class="table-view-cell">
+				<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+			</li>
+		<?php endwhile; ?>
+	</ul>
+</div>
+
 <div id="page" class="hfeed site">
