@@ -38,6 +38,8 @@ function curbsideMap() {
 		addMarkers();
 		drawRoute();
 
+		m.getMap().fitBounds(m.bounds);
+
 		return m.map;
 	}
 
@@ -131,6 +133,7 @@ function curbsideMap() {
 		m.settings = settings;
 		m.geoLocated = false;
 		m.map = null;
+		m.bounds = new google.maps.LatLngBounds();
 
 		mapHeight();
 		initMap();
@@ -162,6 +165,8 @@ function curbsideMap() {
 				}
 			}
 		});
+
+		m.bounds.extend( new google.maps.LatLng( value.lat, value.lng ) );
 	}
 
 	return m;

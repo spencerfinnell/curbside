@@ -69,10 +69,24 @@ class Curbside_Trucks {
 	}
 
 	public static function get_current_trucks() {
-		$trucks = new WP_Query( array(
+		$query = get_queried_object();
+
+		$args = array(
 			'post_type' => 'truck',
 			'nopaging' => true
-		) );
+		);
+
+		if ( isset( $query->taxonomy ) ) {
+			$args[ 'tax_query' ] = array(
+				array(
+					'taxonomy' => $query->taxonomy,
+					'field' => 'id',
+					'terms' => array( $query->term_id )
+				)
+			);
+		}
+
+		$trucks = new WP_Query( $args );
 
 		$locations = array();
 
@@ -87,9 +101,11 @@ class Curbside_Trucks {
 			$coords = $truck->get_current_location()->get_coordinates();
 
 			$locations[$truck->ID] = array(
+				'id'  => $truck->ID,
 				'lat' => $coords[ 'lat' ],
 				'lng' => $coords[ 'lng' ],
 				'details' => array(
+					'title' => get_the_title( $truck->ID ),
 					'permalink' => get_permalink( $truck->ID )
 				)
 			);
