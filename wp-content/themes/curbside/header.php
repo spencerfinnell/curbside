@@ -45,10 +45,6 @@
 		<li class="table-view-cell">
 			<a href="<?php echo get_permalink( get_page_by_path( 'search' ) ); ?>">Search</a>
 		</li>
-		<?php if ( is_user_logged_in() ) : ?>
-		<li class="table-view-cell">
-			<a href="<?php echo get_permalink( get_page_by_path( 'search' ) ); ?>">Following</a>
-		</li>
 		<li class="table-view-divider">
 			Cuisines
 		</li>
@@ -61,6 +57,10 @@
 			<a href="<?php echo get_term_link( $term ); ?>" class="navigate-right"><?php echo $term->name; ?></a>
 		</li>
 		<?php endforeach; ?>
+		<?php if ( is_user_logged_in() ) : ?>
+		<li class="table-view-cell">
+			<a href="<?php echo get_permalink( get_page_by_path( 'search' ) ); ?>">Following</a>
+		</li>
 		<?php endif; ?>
 		<li class="table-view-divider">
 			Quick Picks
