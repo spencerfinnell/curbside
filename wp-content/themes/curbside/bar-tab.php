@@ -10,7 +10,8 @@
 	</a>
 
 	<?php if ( is_singular( 'truck' ) ) : ?>
-		<a class="tab-item" href="#">
+		<?php global $post; ?>
+		<a class="tab-item" href="tel:<?php echo $post->tel; ?>">
 			<span class="icon icon-sound"></span>
 			<span class="tab-label">Call</span>
 		</a>
