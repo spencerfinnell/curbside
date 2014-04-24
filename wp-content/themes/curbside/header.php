@@ -45,9 +45,23 @@
 		<li class="table-view-cell">
 			<a href="<?php echo get_permalink( get_page_by_path( 'search' ) ); ?>">Search</a>
 		</li>
+		<?php if ( is_user_logged_in() ) : ?>
 		<li class="table-view-cell">
 			<a href="<?php echo get_permalink( get_page_by_path( 'search' ) ); ?>">Following</a>
 		</li>
+		<li class="table-view-divider">
+			Cuisines
+		</li>
+		<?php
+			$terms = get_terms( 'truck-cuisine', array( 'hide_empty' => 0 ) );
+
+			foreach ( $terms as $term ) :
+		?>
+		<li class="table-view-cell">
+			<a href="<?php echo get_term_link( $term ); ?>" class="navigate-right"><?php echo $term->name; ?></a>
+		</li>
+		<?php endforeach; ?>
+		<?php endif; ?>
 		<li class="table-view-divider">
 			Quick Picks
 		</li>
