@@ -24,6 +24,8 @@
 	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="<?php echo get_template_directory_uri(); ?>/images/apple-touch-icon-120x120.png">
 	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="<?php echo get_template_directory_uri(); ?>/images/apple-touch-icon-152x152.png">
 
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
 	<title><?php wp_title( ' - ', true, 'right' ); ?></title>
 
 	<link rel="profile" href="http://gmpg.org/xfn/11">
