@@ -123,9 +123,27 @@ function curbsideMap() {
 		var windowHeight = $(window).height();
 		var contentHeight = $( '.content' ).height();
 
-		if ( $( 'body' ).hasClass( 'home' ) ) {
+		/*if ( $( 'body' ).hasClass( 'home' ) ) {
 			return map.css( 'height', contentHeight - 25 );
+		}*/
+
+		var contentContents = $( '.content > *' );
+		var contentContentsHeight = 0;
+
+		var mapHeight = map.outerHeight();
+
+		$.each(contentContents, function() {
+			contentContentsHeight += parseInt( $(this).outerHeight() );
+		});
+
+		console.log( contentContentsHeight );
+		console.log( contentHeight );
+
+		if ( contentContentsHeight < contentHeight ) {
+			return map.css( 'height', mapHeight + ( contentHeight - contentContentsHeight ) - 40 );
 		}
+
+		var remainingHeight = contentHeight - contentContentsHeight;
 
 		return map.css( 'height', contentHeight - 100 );
 	}

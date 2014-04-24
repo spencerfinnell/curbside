@@ -96,6 +96,15 @@ class Curbside_Truck {
 		return $url;
 	}
 
+	public function get_cuisine() {
+		$cuisines = wp_get_object_terms( $this->ID, array( 'truck-cuisine' ) );
+
+		foreach ( $cuisines as $cuisine ) {
+			return $cuisine->name;
+			break;
+		}
+	}
+
 	private function _get_from_menu( $menu ) {
 		$connected = p2p_type( 'menu_to_truck' )->set_direction( 'from' )->get_connected( $menu->ID );
 

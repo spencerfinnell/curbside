@@ -11,6 +11,8 @@
  * @package Curbside Cuisine
  */
 
+$trucks = Curbside_Trucks::get_current_trucks();
+
 get_header(); ?>
 
 	<header class="bar bar-nav">
@@ -35,10 +37,25 @@ get_header(); ?>
 						geolocate: true,
 						lat: '',
 						lng: '',
-						markers: <?php echo json_encode( Curbside_Trucks::get_current_trucks() ); ?>
+						markers: <?php echo json_encode( $trucks ); ?>
 					});
 				});
 			</script>
+		</div>
+
+		<div class="card">
+			<ul class="table-view">
+			<li class="table-view-divider">Trucks Near You</li>
+			<?php foreach ( $trucks as $truck ) : ?>
+				<li class="table-view-cell">
+					<?php $truck = new Curbside_Truck( $truck[ 'id' ] ); ?>
+					<a href="<?php echo get_permalink( $truck->ID ); ?>" class="navigate-right">
+						<span class="badge"><?php echo $truck->get_cuisine(); ?></span>
+						<?php echo get_the_title( $truck->ID ); ?>
+					</a>
+				</li>
+			<?php endforeach; ?>
+			</ul>
 		</div>
 
 	</div>
